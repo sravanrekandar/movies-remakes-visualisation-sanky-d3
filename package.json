@@ -1,0 +1,20 @@
+{
+  "name": "remade-movies-visualisation-sanky-d3",
+  "version": "1.0.0",
+  "description": "data visualisation for movie remakes over years",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sravanrekandar <sravanrekandar@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
+    "jquery": "^3.2.1",
+    "jsdom": "^9.12.0"
+  }
+}

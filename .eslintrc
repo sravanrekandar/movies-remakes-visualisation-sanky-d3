@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb/base",
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "semi": ["error", "never"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "prefer-spread": 0,
+    "no-param-reassign": 0,
+    "import/newline-after-import": 0
+  }
+}
