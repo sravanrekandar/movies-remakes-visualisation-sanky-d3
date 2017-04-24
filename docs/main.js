@@ -19,6 +19,12 @@ function plot(svg, width, height, data) {
     .links(data.links)
     .layout(32)
 
+  // Tooltips
+  const tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(d => `Directed by ${d.directors.join(', ')}`)
+  svg.call(tip)
   const link = svg.append('g').selectAll('.link')
     .data(data.links)
     .enter()
@@ -99,12 +105,14 @@ function plot(svg, width, height, data) {
       }
     })
 
+  node.filter(d => (d.type !== 'timeline-node'))
+    .on('mouseenter', tip.show).on('mouseleave', tip.hide)
+
   // remove year nodes and links
   d3.selectAll('.year-node').remove()
   d3.selectAll('.year-link').remove()
 }
 window.getData((data) => {
-  console.log(data)
   const margin = { top: 1, right: 1, bottom: 6, left: 1 }
   const width = (data.allYears.length * 120) - margin.left - margin.right + 100
   const height = 400 - margin.top - margin.bottom

@@ -52,3 +52,34 @@ h2 {
   stroke-opacity: .7;
   stroke-width: 2;
 }
+
+.d3-tip {
+  font-size: 11px;
+  line-height: 1;
+  padding: 12px;
+  background: #fafafa;
+  color: #aaa;
+  box-shadow: #a0a0a0 2px 2px 2px;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: #fafafa;
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-shadow: #a0a0a0 2px 2px 2px;
+}
