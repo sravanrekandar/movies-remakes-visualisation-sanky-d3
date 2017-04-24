@@ -33,7 +33,7 @@ window.getData((data) => {
     .data(data.links)
     .enter()
     .append('path')
-    .attr('class', d => `link ${d.type === 'year-link' ? 'year-link' : ''}`)
+    .attr('class', d => `link ${d.cssClasses.join(' ')}`)
     .attr('d', path)
     .style('stroke-width', d => (d.type === 'year-link' ? 0 : 1))
     .sort((a, b) => b.dy - a.dy)
@@ -45,8 +45,9 @@ window.getData((data) => {
     .data(data.nodes)
     .enter()
     .append('g')
-    .attr('class', d => `node node-id-${d.id} ${d.type === 'year-node' ? 'year-node' : ''}`)
+    .attr('class', d => `node ${d.cssClasses.join(' ')}`)
     .attr('transform', d => `translate(${d.x},${d.y})`)
+
 
   /*
       node.call(d3.behavior.drag()
@@ -57,6 +58,7 @@ window.getData((data) => {
   node.append('rect')
     .attr('height', d => (d.dy < 10 ? 10 : d.dy))
     .attr('width', sankey.nodeWidth())
+    .attr('class', 'node-rect')
     .style('fill', (d) => {
       d.color = (d.type === 'year-node') ? 'transparent' : color(d.name.replace(/ .*/, ''))
       return d.color
@@ -81,4 +83,22 @@ window.getData((data) => {
     .attr('x', 6 + sankey.nodeWidth())
     .attr('text-anchor', 'start')
     .attr('class', d => `node-id-${d.id}`)
+
+  // Gather relative links and store references for hover - highlighting effects
+  node.each((d) => {
+    d.associatedLinks = d3.selectAll(`.link-node-id-${d.id}`)
+    d.associatedNodes = d3.selectAll(`.node-node-id-${d.id}`)
+  })
+  // highlight / de highlight relative links
+  node.on('mouseenter', (d) => {
+    if (d.type !== 'year-node') {
+      d.associatedLinks.classed('active-link', true)
+      d.associatedNodes.classed('active-node', true)
+    }
+  }).on('mouseleave', (d) => {
+    if (d.type !== 'year-node') {
+      d.associatedLinks.classed('active-link', false)
+      d.associatedNodes.classed('active-node', false)
+    }
+  })
 })

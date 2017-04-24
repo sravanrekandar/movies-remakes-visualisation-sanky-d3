@@ -12,23 +12,45 @@ h2 {
   font: 13px sans-serif;
 }
 .node rect {
+  fill: none;
   fill-opacity: .5;
   shape-rendering: crispEdges;
   stroke-width: 0;
   cursor: pointer;
 }
-.node react:hover {
+.node.year-node rect {
+  cursor: default;
+}
+.node:hover .node-rect {
   fill-opacity: 1;
+  stroke-width: 0.5;
+}
+.node.active-node .node-rect {
   stroke-width: 1;
+}
+.node.year-node:hover rect{
+  fill-opacity: 0;
+  stroke-width: 0;
 }
 .node text {
   text-shadow: 0 1px 0 #fff;
 }
+.node:hover text {
+  font-weight: bold;
+}
+
 .link {
   fill: none;
   stroke: #000;
   stroke-opacity: .2;
 }
+.link.active-link {
+  stroke-opacity: .7;
+}
+.year-link, .year-link.link.active-link {
+  stroke-opacity: 0;
+}
+
 
 .year-node {
   fill: transparent;

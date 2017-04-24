@@ -6,6 +6,9 @@ window.getData = (cb) => {
     let nodes = json
     nodes.length = 20 // Limiting the set for a quick demo
     nodes = nodes.filter(e => e.year > 0)
+
+    // Sort the nodes by year
+    nodes.sort((a, b) => (a.year - b.year))
     const links = []
     let allYears = _.uniq(nodes.map(e => Number(e.year)))
     allYears = allYears.filter(e => isFinite(e))
@@ -13,12 +16,6 @@ window.getData = (cb) => {
     const leastYear = Math.min.apply(null, allYears)
     const maxYear = Math.max.apply(null, allYears)
 
-    /*
-    // Add ten more years to keep the padding
-    for (let i = 1; i <= 10; i += 1) {
-      allYears.push(maxYear + i)
-    }
-    */
     // Creating Year nodes
     const yearNodes = allYears.map((e) => {
       const yearNode = {
@@ -46,22 +43,36 @@ window.getData = (cb) => {
     nodes = [].concat(nodes, yearNodes)
     nodes.forEach((node, nodeIdx) => {
       node.name = node.title
-
+      node.cssClasses = node.cssClasses || [`node-${node.id}`]
       node.originals.forEach((originalNodeId, idx) => {
-        links.push({
-          source: nodes.findIndex(e => e.id === originalNodeId),
+        const sourceIdx = nodes.findIndex(e => e.id === originalNodeId)
+        const link = {
+          source: sourceIdx,
           target: nodeIdx,
           linkId: `link-${nodeIdx}-${idx}`,
           value: 1, // A dummy value
-        })
+          cssClasses: [
+            'node-link',
+            `link-node-id-${node.id}`,
+            `link-node-id-${nodes[sourceIdx].id}`,
+          ],
+        }
+        if (node.type === 'year-node') {
+          link.cssClasses.push('year-link')
+          node.cssClasses.push('year-node')
+        }
+
+        nodes[sourceIdx].cssClasses.push(`node-node-id-${node.id}`)
+        node.cssClasses.push(`node-node-id-${nodes[sourceIdx].id}`)
+
+        links.push(link)
       })
 
+      // Connect nodes with prev and next year nodes
       if (node.type !== 'year-node') {
         // Map with previous year node
 
-
         const yearIndex = allYears.indexOf(Number(node.year))
-        console.log(yearIndex)
         if (yearIndex > 0 && yearIndex !== allYears.length - 1) {
           const prevAvailableYear = allYears[yearIndex - 1]
           const yearNodeIndex = nodes.findIndex(e => e.id === `year-${prevAvailableYear}`)
@@ -72,6 +83,11 @@ window.getData = (cb) => {
             linkId: `prev-link-${nodeIdx}-year-${node.year}`,
             type: 'year-link',
             value: 1, // A dummy value
+            cssClasses: [
+              'year-link',
+              `link-node-id-${nodes[yearNodeIndex].id}`,
+              `link-node-id-${node.id}`,
+            ],
           })
         }
 
@@ -86,11 +102,15 @@ window.getData = (cb) => {
             linkId: `next-link-year-${node.year}-${nodeIdx}`,
             type: 'year-link',
             value: 1, // A dummy value
+            cssClasses: [
+              'year-link',
+              `link-node-id-${node.id}`,
+              `link-node-id-${nodes[yearNodeIndex].id}`,
+            ],
           })
         }
       }
     })
-
     cb({
       nodes,
       links,
