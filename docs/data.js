@@ -17,6 +17,10 @@ window.getData = (cb) => {
     const maxYear = Math.max.apply(null, allYears)
 
     // Creating Year nodes
+    /**
+     * These year nodes helps us place the actual nodes in time series manner
+     * Once the plotting (in DOM) of the actual nodes are done, we will remove these nodes
+     */
     const yearNodes = allYears.map((e) => {
       const yearNode = {
         id: `year-${e}`,
@@ -30,6 +34,9 @@ window.getData = (cb) => {
         originals: [],
         remarks: [],
         type: 'year-node',
+        cssClasses: [
+          'year-node',
+        ],
       }
       return yearNode
     })
@@ -59,7 +66,6 @@ window.getData = (cb) => {
         }
         if (node.type === 'year-node') {
           link.cssClasses.push('year-link')
-          node.cssClasses.push('year-node')
         }
 
         nodes[sourceIdx].cssClasses.push(`node-node-id-${node.id}`)
@@ -111,9 +117,67 @@ window.getData = (cb) => {
         }
       }
     })
+
+    // Preparing another set of year nodes to visualise timeline
+    const timeLineLinks = []
+    const timeLineNodes = allYears.map((e) => {
+      const yearNode = {
+        id: `timeline-year-${e}`,
+        title: e.toString(),
+        name: e.toString(),
+        year: e,
+        titleWikiLink: '',
+        directors: [
+        ],
+        direcorWikiLink: '',
+        originals: [],
+        remarks: [],
+        type: 'timeline-node',
+        cssClasses: [
+          'timeline-node',
+        ],
+      }
+      return yearNode
+    })
+    timeLineNodes.forEach((e, idx) => {
+      if (idx !== 0) {
+        const lastYearNode = timeLineNodes[idx - 1]
+        e.originals.push(lastYearNode.id)
+      }
+    })
+
+    timeLineNodes.forEach((node, nodeIdx) => {
+      node.name = node.title
+      node.cssClasses = node.cssClasses || [`time-line-node-${node.id}`]
+      node.originals.forEach((originalNodeId, idx) => {
+        const sourceIdx = timeLineNodes.findIndex(e => e.id === originalNodeId)
+        const link = {
+          source: sourceIdx,
+          target: nodeIdx,
+          linkId: `link-${nodeIdx}-${idx}`,
+          value: 1, // A dummy value
+          cssClasses: [
+            'timeline-link',
+            `timeline-link-node-id-${node.id}`,
+            `timeline-link-node-id-${timeLineNodes[sourceIdx].id}`,
+          ],
+        }
+        if (node.type === 'year-node') {
+          link.cssClasses.push('year-link')
+        }
+
+        nodes[sourceIdx].cssClasses.push(`node-node-id-${node.id}`)
+        node.cssClasses.push(`node-node-id-${timeLineNodes[sourceIdx].id}`)
+
+        timeLineLinks.push(link)
+      })
+    })
+
     cb({
       nodes,
       links,
+      timeLineNodes,
+      timeLineLinks,
       leastYear,
       maxYear,
       allYears,

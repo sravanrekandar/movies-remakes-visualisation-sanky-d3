@@ -11,6 +11,7 @@ h2 {
   height: 500px;
   font: 13px sans-serif;
 }
+
 .node rect {
   fill: none;
   fill-opacity: .5;
@@ -34,28 +35,20 @@ h2 {
 }
 .node text {
   text-shadow: 0 1px 0 #fff;
+  opacity: 0.5;
 }
 .node:hover text {
   font-weight: bold;
+  opacity: 0.9;
 }
 
 .link {
   fill: none;
   stroke: #000;
   stroke-opacity: .2;
+  stroke-width: 1;
 }
 .link.active-link {
   stroke-opacity: .7;
-}
-.year-link, .year-link.link.active-link {
-  stroke-opacity: 0;
-}
-
-
-.year-node {
-  fill: transparent;
-}
-
-.year-link {
-  stroke-opacity: 0;
+  stroke-width: 2;
 }
