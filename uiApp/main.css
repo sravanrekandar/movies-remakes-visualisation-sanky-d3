@@ -12,9 +12,14 @@ h2 {
   font: 13px sans-serif;
 }
 .node rect {
-  fill-opacity: .9;
+  fill-opacity: .5;
   shape-rendering: crispEdges;
   stroke-width: 0;
+  cursor: pointer;
+}
+.node react:hover {
+  fill-opacity: 1;
+  stroke-width: 1;
 }
 .node text {
   text-shadow: 0 1px 0 #fff;

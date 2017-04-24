@@ -47,6 +47,7 @@ window.getData((data) => {
     .append('g')
     .attr('class', d => `node node-id-${d.id} ${d.type === 'year-node' ? 'year-node' : ''}`)
     .attr('transform', d => `translate(${d.x},${d.y})`)
+
   /*
       node.call(d3.behavior.drag()
         .origin(function (d) { return d; })
@@ -62,7 +63,12 @@ window.getData((data) => {
     })
     .style('stroke', d => d3.rgb(d.color).darker(2))
     .append('title')
-    .text(d => `d.name${'\n'}${format(d.value)}`)
+    .text(d => `${d.titleWikiLink}`)
+
+  // Open a new window on click
+  node.on('click', (d) => {
+    window.open(d.titleWikiLink, '_newtab')
+  })
 
   node.append('text')
     .attr('x', -6)

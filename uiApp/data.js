@@ -61,7 +61,6 @@ window.getData = (cb) => {
 
 
         const yearIndex = allYears.indexOf(Number(node.year))
-        console.log(yearIndex)
         if (yearIndex > 0 && yearIndex !== allYears.length - 1) {
           const prevAvailableYear = allYears[yearIndex - 1]
           const yearNodeIndex = nodes.findIndex(e => e.id === `year-${prevAvailableYear}`)
