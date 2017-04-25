@@ -2,14 +2,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   padding: 10px;
   margin: auto;
+  background-color: #EFEFFF;
 }
 
 h2 {
   color: #369;
 }
 #chart {
-  height: 500px;
+  width: 100%;
   font: 13px sans-serif;
+  background-color: #FFF;
+  overflow: auto;
 }
 
 .node rect {
@@ -82,4 +85,10 @@ h2 {
   top: 100%;
   left: 0;
   text-shadow: #a0a0a0 2px 2px 2px;
+}
+.static-render-container .node tspan{
+  display: none;
+}
+.static-render-container .timeline-node tspan{
+  display: inline-block;
 }
