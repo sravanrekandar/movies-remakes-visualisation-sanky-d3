@@ -8,12 +8,23 @@
     "pre-render": "node prerenderChart/index.js",
     "build-drender": "browserify --entry ./docs/dynamicRendering/index.js --outfile ./docs/dynamicRendering/bundle.js",
     "build-srender": "browserify --entry ./docs/index.js --outfile ./docs/bundle.js",
-    "build": "npm run pre-render && npm run build-drender && npm run build-srender"
+    "build-dsrender": "npm run build-drender && npm run build-srender",
+    "build": "npm run pre-render && build-dsrender"
   },
   "author": "sravanrekandar <sravanrekandar@gmail.com>",
   "license": "ISC",
+  "keywords": [
+    "offline",
+    "chart",
+    "rendering",
+    "d3",
+    "jsdom",
+    "sankey",
+    "remake movies"
+  ],
   "dependencies": {
-    "browserify": "^14.3.0",
+    "browser-sync": "^2.18.8",
+    "browserify": "^7.1.0",
     "d3": "^4.8.0",
     "d3-sankey": "^0.4.2",
     "d3-tip": "^0.7.1",
@@ -22,9 +33,14 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.0",
+    "gulp": "^3.9.1",
+    "gulp-browserify": "^0.5.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^2.1.2",
     "jquery": "^3.2.1",
     "jsdom": "^10.0.0",
     "lodash": "^4.17.4",
-    "npm": "^4.5.0"
+    "npm": "^4.5.0",
+    "pump": "^1.0.2"
   }
 }

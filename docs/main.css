@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  padding: 10px;
+  padding: 10px 100px 10px 100px;
   margin: auto;
   background-color: #EFEFFF;
 }
@@ -8,7 +8,7 @@ body {
 h2 {
   color: #369;
 }
-#chart {
+#chart, #mini-chart {
   width: 100%;
   font: 13px sans-serif;
   background-color: #FFF;
@@ -25,11 +25,24 @@ h2 {
 .node.year-node rect {
   cursor: default;
 }
+/*
+* When a node bis being focused, all non related nodes and links to the node would be dimmed
+*/
+.a-node-activated-in-svg .node,
+.a-node-activated-in-svg .link {
+  opacity: 0.2;
+}
+
+.a-node-activated-in-svg .node:hover,
+.a-node-activated-in-svg .active-node,
+.a-node-activated-in-svg .active-link {
+  opacity: 1;
+}
 .node:hover .node-rect {
   fill-opacity: 1;
   stroke-width: 0.5;
 }
-.node.active-node .node-rect {
+.node.active-node .node-rect{
   stroke-width: 1;
 }
 .node.year-node:hover rect{
@@ -61,9 +74,10 @@ h2 {
   line-height: 1;
   padding: 12px;
   background: #fafafa;
-  color: #aaa;
+  color: #667;
   box-shadow: #a0a0a0 2px 2px 2px;
   border-radius: 2px;
+  z-index: 1050;
 }
 
 /* Creates a small triangle extender for the tooltip */
@@ -85,6 +99,16 @@ h2 {
   top: 100%;
   left: 0;
   text-shadow: #a0a0a0 2px 2px 2px;
+}
+.d3-tip-row{
+  line-height: 20px;
+}
+.d3-tip-highlight {
+  cursor: pointer;
+  color: #369;
+}
+.d3-tip-highlight:hover {
+  color: #ff7f0e;
 }
 .static-render-container .node tspan{
   display: none;

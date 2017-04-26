@@ -1,12 +1,12 @@
 const _ = require('lodash')
-function getNodesAndLinksForSankey(dataSet, limitNodesCount) {
-  let nodes = dataSet
+const defaultOptions = { limitNodesCount: undefined }
+function getNodesAndLinksForSankey(dataSet, options = defaultOptions) {
+  let nodes = _.cloneDeep(dataSet) // Making sure we don't pollute the actual data
   nodes = nodes.filter(e => e.year > 0)
-
   // We need to limit the number of nodes (to 40 may be) if we are trying this script in browser
-  if (limitNodesCount) {
-    nodes.length = limitNodesCount
-  }
+  const limitNodesCount = options.limitNodesCount || nodes.length
+
+  nodes.length = limitNodesCount
   // Sort the nodes by year
   nodes.sort((a, b) => (a.year - b.year))
   const links = []
@@ -47,7 +47,14 @@ function getNodesAndLinksForSankey(dataSet, limitNodesCount) {
     }
   })
 
-  nodes.forEach((n) => { n.cssClasses = [`node-id-${n.id}`, 'node-movie'] })
+  nodes.forEach((n) => {
+    n.cssClasses = [`node-id-${n.id}`, 'node-type-movie']
+    if (n.originals.length === 0) {
+      n.cssClasses.push('node-type-original-movie')
+    } else {
+      n.cssClasses.push('node-type-remake-movie')
+    }
+  })
   nodes = [].concat(nodes, yearNodes)
   nodes.forEach((node, nodeIdx) => {
     node.name = node.title

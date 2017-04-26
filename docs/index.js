@@ -1,4 +1,6 @@
 const { addInteractivity } = require('./interactivity')
+const { addModalPopup } = require('./popupBehaviour')
+const { getNodesAndLinksForSankey } = require('./isomorphic-js/datagen')
 function init() {
   const fetchMoviesJSON = new Promise((resolve) => {
     fetch('assets/movies.json')
@@ -18,7 +20,12 @@ function init() {
     chartContainer.style.height = `${chartHeight}px`
     chartContainer.innerHTML = values[1]
 
-    addInteractivity(document.querySelector('#moviesSVG'), values[0])
+    const movieNodes = values[0]
+    const nodesAndLinksData = getNodesAndLinksForSankey(movieNodes)
+    const chartSVGContainer = document.querySelector('#moviesSVG')
+    nodesAndLinksData.groupId = 'staticRender'
+    addInteractivity(chartSVGContainer, nodesAndLinksData)
+    addModalPopup(chartSVGContainer, nodesAndLinksData, movieNodes)
   })
 }
 init()

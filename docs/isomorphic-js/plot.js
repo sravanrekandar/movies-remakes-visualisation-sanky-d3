@@ -7,8 +7,8 @@ function plotChart(svg, width, height, data) {
   const format = d => `${formatNumber(d)} TWh`
   const color = d3.scaleOrdinal(d3.schemeCategory20)
   const sankey = d3.sankey()
-    .nodeWidth(20)
-    .nodePadding(15)
+    .nodeWidth(data.nodeWidth || 20)
+    .nodePadding(data.nodePadding || 15)
     .size([width, height])
 
   const path = sankey.link(10)

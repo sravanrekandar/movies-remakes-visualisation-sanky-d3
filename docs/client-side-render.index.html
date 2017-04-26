@@ -13,12 +13,13 @@
     <header>
       <h2>Movie remakes over years <small>(work in progress)</small></h2>
       <p>
-        <a href="https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3">Code in github</a>
-        <br> | Courtesy: <a href="https://d3js.org/">d3js</a> | <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>        | <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">Movie remake data</a>
+        <a href="https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3">Code In github</a>
+        <br> | Courtesy: <a href="https://d3js.org/">d3js</a> | <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>
+        | <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">Movie remake data</a>
         <br /> Develped by: Sravan Rekandar (<a href="https://github.com/sravanrekandar">Git</a> | <a href="https://www.linkedin.com/in/sravan-kumar-rekandar-2b040717/">Linked In</a>)
       </p>
     </header>
-    <div id="chart" class="static-render-container"></div>
+    <div id="chart"></div>
     <div class="modal fade" id="movie-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -31,13 +32,13 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <script src="bundles/static-render.bundle.js"></script>
+  <script src="bundles/client-side-render.bundle.js"></script>
 </body>
 
 </html>
