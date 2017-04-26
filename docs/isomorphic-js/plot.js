@@ -49,8 +49,8 @@ function plotChart(svg, width, height, data) {
       return d.color
     })
     .style('stroke', d => d3.rgb(d.color).darker(2))
-    .append('title')
-    .text(d => `${d.titleWikiLink}`)
+    // .append('title')
+    // .text(d => `${d.titleWikiLink}`)
 
   // text
   const nodeText = node.append('text')

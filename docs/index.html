@@ -4,19 +4,34 @@
 <head>
   <meta charset="utf-8">
   <title>Movie Remakes Visualisation using d3.sankey by Sravan Rekandar</title>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
   <link rel="stylesheet" href="main.css" />
 </head>
 
 <body>
-  <div class="container" id="page-container">
-    <header>
-      <h2>Movie remakes over years <small>(work in progress)</small></h2>
+  <div class="container-fluid" id="page-container">
+    <header class="row">
+      <div class="col-10 col-md-auto">
+      <h2>
+        <a href="https://sravanrekandar.github.io/movies-remakes-visualisation-sanky-d3/">
+          Movie remakes over years
+        </a>
+        <small>
+          <a href="https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3">
+            | view code in github
+          </a>
+        </small>
+      </h2>
       <p>
-        <a href="https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3">Code in github</a>
-        <br> | Courtesy: <a href="https://d3js.org/">d3js</a> | <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>        | <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">Movie remake data</a>
-        <br /> Develped by: Sravan Rekandar (<a href="https://github.com/sravanrekandar">Git</a> | <a href="https://www.linkedin.com/in/sravan-kumar-rekandar-2b040717/">Linked In</a>)
+        <strong>Develped by: Sravan Rekandar | <a href="https://www.linkedin.com/in/sravan-kumar-rekandar-2b040717/">Linked In</a>)</strong>
+        <small>| Courtesy: <a href="https://d3js.org/">d3js</a> | <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>        | <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">Movie remake data</a></small>
       </p>
+      </div>
+      <div class="col text-right">
+        <a href="client-side-render.index.html">Client Side Rendering Demo</a>
+        <br>
+        <a href="#">(This Page) Server Side Rendering Demo</a>
+      </div>
     </header>
     <div id="chart" class="static-render-container"></div>
     <div class="modal fade" id="movie-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

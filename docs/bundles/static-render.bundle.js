@@ -1,4 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+const $ = require('jquery')
 const { addInteractivity } = require('./interactivity')
 const { addModalPopup } = require('./popupBehaviour')
 const { getNodesAndLinksForSankey } = require('./isomorphic-js/datagen')
@@ -17,8 +18,8 @@ function init() {
 
   Promise.all([fetchMoviesJSON, fetchRenderedHTML]).then((values) => {
     const chartContainer = document.querySelector('#chart')
-    const chartHeight = 700 + 50 // 50 for time line
-    chartContainer.style.height = `${chartHeight}px`
+    // const chartHeight = 700 + 50 // 50 for time line
+    // chartContainer.style.height = `${chartHeight}px`
     chartContainer.innerHTML = values[1]
 
     const movieNodes = values[0]
@@ -27,11 +28,15 @@ function init() {
     nodesAndLinksData.groupId = 'staticRender'
     addInteractivity(chartSVGContainer, nodesAndLinksData)
     addModalPopup(chartSVGContainer, nodesAndLinksData, movieNodes)
+    // Scrolling the div to present a better view
+    $(chartContainer).animate({
+      scrollLeft: 11000,
+    }, 800)
   })
 }
 init()
 
-},{"./interactivity":2,"./isomorphic-js/datagen":3,"./popupBehaviour":6}],2:[function(require,module,exports){
+},{"./interactivity":2,"./isomorphic-js/datagen":3,"./popupBehaviour":6,"jquery":14}],2:[function(require,module,exports){
 const d3 = require('d3')
 d3.tip = require('d3-tip')
 
@@ -383,8 +388,8 @@ function plotChart(svg, width, height, data) {
       return d.color
     })
     .style('stroke', d => d3.rgb(d.color).darker(2))
-    .append('title')
-    .text(d => `${d.titleWikiLink}`)
+    // .append('title')
+    // .text(d => `${d.titleWikiLink}`)
 
   // text
   const nodeText = node.append('text')

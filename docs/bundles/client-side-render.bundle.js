@@ -12,7 +12,7 @@ function init() {
     .then(r => r.json())
     .then((res) => {
       const movieNodes = res
-      const nodesAndLinksData = getNodesAndLinksForSankey(movieNodes, { limitNodesCount: 5 })
+      const nodesAndLinksData = getNodesAndLinksForSankey(movieNodes, { limitNodesCount: 30 })
       const chartContainer = document.querySelector('#chart')
       const chartHeight = 400 + 50 // 50 for timeline
       chartContainer.style.height = `${chartHeight}px`
@@ -378,8 +378,8 @@ function plotChart(svg, width, height, data) {
       return d.color
     })
     .style('stroke', d => d3.rgb(d.color).darker(2))
-    .append('title')
-    .text(d => `${d.titleWikiLink}`)
+    // .append('title')
+    // .text(d => `${d.titleWikiLink}`)
 
   // text
   const nodeText = node.append('text')

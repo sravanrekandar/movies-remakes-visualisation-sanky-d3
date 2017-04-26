@@ -31,19 +31,23 @@ h2 {
 .a-node-activated-in-svg .node,
 .a-node-activated-in-svg .link {
   opacity: 0.2;
+  transition: opacity 1s;
 }
 
 .a-node-activated-in-svg .node:hover,
 .a-node-activated-in-svg .active-node,
 .a-node-activated-in-svg .active-link {
   opacity: 1;
+  transition: opacity 1s;
 }
 .node:hover .node-rect {
   fill-opacity: 1;
   stroke-width: 0.5;
+  transition: fill-opacity 0.8s;
 }
 .node.active-node .node-rect{
   stroke-width: 1;
+  transition: stroke-width 0.3s;
 }
 .node.year-node:hover rect{
   fill-opacity: 0;
@@ -67,6 +71,8 @@ h2 {
 .link.active-link {
   stroke-opacity: .7;
   stroke-width: 2;
+  transition: stroke-opacity 0.3s;
+  transition: stroke-width 0.3s;
 }
 
 .d3-tip {
@@ -78,6 +84,7 @@ h2 {
   box-shadow: #a0a0a0 2px 2px 2px;
   border-radius: 2px;
   z-index: 1050;
+  transition: opacity 0.3s;
 }
 
 /* Creates a small triangle extender for the tooltip */

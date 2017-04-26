@@ -12,6 +12,8 @@ const { prepareContainers } = require('../docs/isomorphic-js/plot')
 const chartContainer = dom.window.document.querySelector('#dataviz-container')
 const data = getNodesAndLinksForSankey(moviesNodes)
 const chartHeight = 700
+
+
 prepareContainers(data, chartContainer, chartHeight)
 
 const renderedHTMLPath = path.resolve(__dirname, '../docs/assets/renderedChart.html')

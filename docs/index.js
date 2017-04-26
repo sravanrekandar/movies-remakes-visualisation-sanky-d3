@@ -1,3 +1,4 @@
+const $ = require('jquery')
 const { addInteractivity } = require('./interactivity')
 const { addModalPopup } = require('./popupBehaviour')
 const { getNodesAndLinksForSankey } = require('./isomorphic-js/datagen')
@@ -16,8 +17,8 @@ function init() {
 
   Promise.all([fetchMoviesJSON, fetchRenderedHTML]).then((values) => {
     const chartContainer = document.querySelector('#chart')
-    const chartHeight = 700 + 50 // 50 for time line
-    chartContainer.style.height = `${chartHeight}px`
+    // const chartHeight = 700 + 50 // 50 for time line
+    // chartContainer.style.height = `${chartHeight}px`
     chartContainer.innerHTML = values[1]
 
     const movieNodes = values[0]
@@ -26,6 +27,10 @@ function init() {
     nodesAndLinksData.groupId = 'staticRender'
     addInteractivity(chartSVGContainer, nodesAndLinksData)
     addModalPopup(chartSVGContainer, nodesAndLinksData, movieNodes)
+    // Scrolling the div to present a better view
+    $(chartContainer).animate({
+      scrollLeft: 11000,
+    }, 800)
   })
 }
 init()

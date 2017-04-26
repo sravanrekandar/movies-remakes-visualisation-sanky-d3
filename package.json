@@ -4,12 +4,7 @@
   "description": "data visualisation for movie remakes over years",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "pre-render": "node prerenderChart/index.js",
-    "build-drender": "browserify --entry ./docs/dynamicRendering/index.js --outfile ./docs/dynamicRendering/bundle.js",
-    "build-srender": "browserify --entry ./docs/index.js --outfile ./docs/bundle.js",
-    "build-dsrender": "npm run build-drender && npm run build-srender",
-    "build": "npm run pre-render && build-dsrender"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "sravanrekandar <sravanrekandar@gmail.com>",
   "license": "ISC",
