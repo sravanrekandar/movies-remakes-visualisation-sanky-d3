@@ -37,6 +37,7 @@ function init() {
 init()
 
 },{"./interactivity":2,"./isomorphic-js/datagen":3,"./popupBehaviour":6,"jquery":14}],2:[function(require,module,exports){
+const $ = require('jquery')
 const d3 = require('d3')
 d3.tip = require('d3-tip')
 
@@ -93,8 +94,8 @@ function getTooltipHTML(d, nodes) {
     `
   )
 }
-function addInteractivity(svg, data) {
-  svg = d3.select(svg)
+function addInteractivity(svgContainer, data) {
+  const svg = d3.select(svgContainer)
   const node = svg.selectAll('.node-type-movie')
   // Connecting data to nodes
   node.data(data.nodes)
@@ -110,6 +111,7 @@ function addInteractivity(svg, data) {
 
   node.on('mouseover', tip.show).on('mouseleave', tip.hide)
   svg.on('click', tip.hide)
+  $(svgContainer).parents().on('click', tip.hide)
   // Gather relative links and store references for hover - highlighting effects
   node.each((d) => {
     d.associatedLinks = svg.selectAll(`.link-node-id-${d.id}`)
@@ -137,7 +139,7 @@ module.exports = {
   addInteractivity,
 }
 
-},{"d3":13,"d3-tip":12}],3:[function(require,module,exports){
+},{"d3":13,"d3-tip":12,"jquery":14}],3:[function(require,module,exports){
 const _ = require('lodash')
 const defaultOptions = { limitNodesCount: undefined }
 function getNodesAndLinksForSankey(dataSet, options = defaultOptions) {
@@ -470,7 +472,7 @@ function showModal(d) {
   const modal = $('#movie-details-modal')
   modal.find('.modal-title').text(`${d.title} (${d.year})`)
   modal.removeClass('fade').show()
-  $('#movie-details-modal .close').off('click', closeModal).on('click', closeModal)
+  $('#movie-details-modal .btn-close').off('click', closeModal).on('click', closeModal)
 }
 
 const { getNodesAndLinksForSankey } = require('./isomorphic-js/datagen')

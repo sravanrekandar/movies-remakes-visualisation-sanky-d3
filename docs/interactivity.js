@@ -1,3 +1,4 @@
+const $ = require('jquery')
 const d3 = require('d3')
 d3.tip = require('d3-tip')
 
@@ -54,8 +55,8 @@ function getTooltipHTML(d, nodes) {
     `
   )
 }
-function addInteractivity(svg, data) {
-  svg = d3.select(svg)
+function addInteractivity(svgContainer, data) {
+  const svg = d3.select(svgContainer)
   const node = svg.selectAll('.node-type-movie')
   // Connecting data to nodes
   node.data(data.nodes)
@@ -71,6 +72,7 @@ function addInteractivity(svg, data) {
 
   node.on('mouseover', tip.show).on('mouseleave', tip.hide)
   svg.on('click', tip.hide)
+  $(svgContainer).parents().on('click', tip.hide)
   // Gather relative links and store references for hover - highlighting effects
   node.each((d) => {
     d.associatedLinks = svg.selectAll(`.link-node-id-${d.id}`)

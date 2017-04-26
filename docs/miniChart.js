@@ -14,7 +14,7 @@ function showModal(d) {
   const modal = $('#movie-details-modal')
   modal.find('.modal-title').text(`${d.title} (${d.year})`)
   modal.removeClass('fade').show()
-  $('#movie-details-modal .close').off('click', closeModal).on('click', closeModal)
+  $('#movie-details-modal .btn-close').off('click', closeModal).on('click', closeModal)
 }
 
 const { getNodesAndLinksForSankey } = require('./isomorphic-js/datagen')

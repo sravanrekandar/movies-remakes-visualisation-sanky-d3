@@ -4,7 +4,10 @@
 <head>
   <meta charset="utf-8">
   <title>Movie Remakes Visualisation using d3.sankey by Sravan Rekandar</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="favicomatic/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="favicomatic/favicon-16x16.png" sizes="16x16" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="main.css" />
 </head>
 
@@ -12,20 +15,20 @@
   <div class="container-fluid" id="page-container">
     <header class="row">
       <div class="col-10 col-md-auto">
-      <h2>
-        <a href="https://sravanrekandar.github.io/movies-remakes-visualisation-sanky-d3/">
+        <h2>
+          <a href="https://sravanrekandar.github.io/movies-remakes-visualisation-sanky-d3/">
           Movie remakes over years
         </a>
-        <small>
+          <small>
           <a href="https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3">
             | view code in github
           </a>
         </small>
-      </h2>
-      <p>
-        <strong>Develped by: Sravan Rekandar | <a href="https://www.linkedin.com/in/sravan-kumar-rekandar-2b040717/">Linked In</a>)</strong>
-        <small>| Courtesy: <a href="https://d3js.org/">d3js</a> | <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>        | <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">Movie remake data</a></small>
-      </p>
+        </h2>
+        <p>
+          <strong>Develped by: Sravan Rekandar | <a href="https://www.linkedin.com/in/sravan-kumar-rekandar-2b040717/">Linked In</a>)</strong>
+          <small>| Courtesy: <a href="https://d3js.org/">d3js</a> | <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>        | <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">Movie remake data</a></small>
+        </p>
       </div>
       <div class="col text-right">
         <a href="client-side-render.index.html">Client Side Rendering Demo</a>
@@ -33,12 +36,15 @@
         <a href="#">(This Page) Server Side Rendering Demo</a>
       </div>
     </header>
+    <div class="alert-info" role="alert">
+      &nbsp;&nbsp;Scroll through the chart, try hovering on and clicking the nodes
+    </div>
     <div id="chart" class="static-render-container"></div>
     <div class="modal fade" id="movie-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <button type="button" class="close btn-close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h4 class="modal-title" id="modal-title">Page Details</h4>
           </div>
           <div class="modal-body">
@@ -46,10 +52,58 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default btn-close" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <div>
+      <h2>Introduction</h2>
+      <p>
+        This application is a proof of concept to visualise a big set of objects in a timeline order and their relations to other
+        objects in the past.
+      </p>
+      <p>
+        This chart displays multiple nodes(Movies) in a timeline order. Each movie node connect's to it's original movie in the past
+        and the remakes in the future.
+      </p>
+      Interactivity is the primary feture of the chart. Hovering, clicking and searching (work under progress) functionalities
+      gives users a smooth experience to navigate through the data.
+      </p>
+      <h2>Insights into the work</h2>
+      <ul>
+        <li>Raw Data: I found this wiki page <a href="https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)">List_of_film_remakes</a>          while searching for a generic suitable sample data.</li>
+        <li>JSON Data: Taking the HTML from the wiki pages, I wrote a <a href="https://nodejs.org/en/">nodejs</a> script to create
+          json object</li>
+        <li>Charting Libraries: I leveraged the awesome libraries <a href="https://d3js.org/">D3JS</a> and <a href="https://bost.ocks.org/mike/sankey/">Sankey Diagrams</a>          to Plot Nodes and Links on the graph.</li>
+        <li>First Approach: I created a simple web page which would acquire the data through an ajax call and then calculates
+          the positions of Nodes and Links using d3 and sankey libraries</li>
+        <li>Problem: The First approach was working fine till I tried to render about 50 nodes. After that, the browser (chrome)
+          is crashing. the problem was with the computing of the positions.</li>
+        <li>Second approach: In order to avoid the computation on the browser side, I used <a href="/sravanrekandar/movies-remakes-visualisation-sanky-d3/blob/master">nodejs</a>          and <a href="/sravanrekandar/movies-remakes-visualisation-sanky-d3/blob/master">jsdom</a> to render the chart offline
+          and store the html to a file</li>
+        <li>Isomorphic Javascript: And I wanted to keep both the static rendering and dynamic rendering pages. For this, I adopted
+          commonJS approach which helped me to write isomorphic javascript which can be executed on nodejs as well as on
+          browser
+        </li>
+        <li>Bundling: To use the isomorphic javascript on browser, I used <a href="http://browserify.org/">Browserify</a></li>
+        <li>Work Force: To make the workflow faster and easier, I used <a href="http://gulpjs.com/">Gulp</a> and <a href="/sravanrekandar/movies-remakes-visualisation-sanky-d3/blob/master">BrowserSync</a>
+          <a href="https://www.browsersync.io/">https://www.browsersync.io/</a>
+        </li>
+      </ul>
+      <h3>Other Technical Details</h3>
+      <p><a target="_newtab" href="https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3/blob/master/README.md">Read here</a></p>
+      <h2>About me</h3>
+        <p>
+          <img src="favicomatic/f.jpg" width=120/>
+        </p>
+        <p>
+          I am Sravan Kumar Rekandar, a UI developer (and a JavaScript full stack developer). I fancy beautiful, intutive user interfaces
+          and visualisations. Along with loving beautiful UIs, I love to build some!
+          <br />
+          <a href="mailto:sravanrekandar@gamil.com">sravanrekandar@gamil.com</a>
+        </p>
     </div>
   </div>
   <script src="bundles/static-render.bundle.js"></script>
