@@ -28,23 +28,29 @@ h2 {
 /*
 * When a node bis being focused, all non related nodes and links to the node would be dimmed
 */
-.a-node-activated-in-svg .node,
-.a-node-activated-in-svg .link {
+.hide-links .link{
+  opacity: 0;
+  transition: 0.3;
+}
+.dim-chart .node,
+.dim-chart .link {
   opacity: 0.2;
   transition: opacity 1s;
 }
 
-.a-node-activated-in-svg .node:hover,
-.a-node-activated-in-svg .active-node,
-.a-node-activated-in-svg .active-link {
+.dim-chart .node:hover,
+.dim-chart .active-node,
+.dim-chart .active-link {
   opacity: 1;
   transition: opacity 1s;
 }
-.node:hover .node-rect {
+.node:hover .node-rect,
+.node.selected-node .node-rect{
   fill-opacity: 1;
   stroke-width: 0.5;
   transition: fill-opacity 0.8s;
 }
+
 .node.active-node .node-rect{
   stroke-width: 1;
   transition: stroke-width 0.3s;

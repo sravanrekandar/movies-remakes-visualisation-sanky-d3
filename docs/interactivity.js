@@ -10,9 +10,9 @@ function getTooltipHTML(d, nodes) {
     allStrings.push(n.title)
     return (
       `
-        <div class="d3-tip-row">
-          ${label}<span class="class="d3-tip-highlight">${n.title} (${n.year})</span>
-        </div>
+        <button class="d3-tip-row go-to-movie-node btn-link" data-node-id="${n.id}">
+          ${label} <span class="class="d3-tip-highlight">${n.title} (${n.year})</span>
+        </button>
       `
     )
   }
@@ -55,7 +55,14 @@ function getTooltipHTML(d, nodes) {
     `
   )
 }
+function addForms() {
+  $('#chart').addClass('hide-links')
+  $('#toggle-connections-checkbox').on('change', () => {
+    $('#chart').toggleClass('hide-links')
+  })
+}
 function addInteractivity(svgContainer, data) {
+  addForms()
   const svg = d3.select(svgContainer)
   const node = svg.selectAll('.node-type-movie')
   // Connecting data to nodes
@@ -71,8 +78,14 @@ function addInteractivity(svgContainer, data) {
   svg.call(tip)
 
   node.on('mouseover', tip.show).on('mouseleave', tip.hide)
+
   svg.on('click', tip.hide)
+
   $(svgContainer).parents().on('click', tip.hide)
+
+  $(document).on('click', '.go-to-movie-node', () => {
+    // TODO
+  })
   // Gather relative links and store references for hover - highlighting effects
   node.each((d) => {
     d.associatedLinks = svg.selectAll(`.link-node-id-${d.id}`)
@@ -83,7 +96,7 @@ function addInteractivity(svgContainer, data) {
   node.filter(d => (d.type !== 'timeline-node'))
     .on('mouseenter', (d) => {
       if (d.type !== 'year-node') {
-        svg.classed('a-node-activated-in-svg', true)
+        svg.classed('dim-chart', true)
         d.associatedLinks.classed('active-link', true)
         d.associatedNodes.classed('active-node', true)
       }
@@ -91,7 +104,7 @@ function addInteractivity(svgContainer, data) {
       if (d.type !== 'year-node') {
         d.associatedLinks.classed('active-link', false)
         d.associatedNodes.classed('active-node', false)
-        svg.classed('a-node-activated-in-svg', false)
+        svg.classed('dim-chart', false)
       }
     })
 }

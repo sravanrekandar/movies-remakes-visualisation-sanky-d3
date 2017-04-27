@@ -37,8 +37,17 @@
       </div>
     </header>
     <div class="alert-info" role="alert">
-      &nbsp;&nbsp;Scroll through the chart, try hovering on and clicking the nodes
+      <div class="row">
+        <div class="col">
+          &nbsp;&nbsp;Scroll through the chart, try hovering on and clicking the nodes
+        </div>
+      <div class="col text-right">
+        <label>
+          <input type="checkbox" id="toggle-connections-checkbox" /> Toggle connections
+        </label>
+      </div>
     </div>
+
     <div id="chart"></div>
     <div class="modal fade" id="movie-details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
