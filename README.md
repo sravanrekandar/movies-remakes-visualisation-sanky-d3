@@ -8,6 +8,7 @@ This application is a proof of concept to visualise a big set of objects in a ti
 This chart displays multiple nodes(Movies) in a timeline order. Each movie node connect's to it's original movie in the past and the remakes in the future.
 
 Interactivity is the primary feture of the chart. Hovering, clicking and searching (work under progress) functionalities gives users a smooth experience to navigate through the data.
+<img src="docs/favicomatic/movie visualisation drawing.jpg" width="80%" />
 
 ## Insights into the work
 * Raw Data: I found this wiki page [List_of_film_remakes](https://en.wikipedia.org/wiki/List_of_film_remakes_(A%E2%80%93M)) while searching for a generic suitable sample data.
