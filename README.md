@@ -1,13 +1,12 @@
 # Movie Remakes Visualisation Sanky D3
 ## [ViewDemo](https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3)
-Image
 
 ## Introduction
 This application is a proof of concept to visualise a big set of objects in a timeline order and their relations to other objects in the past.
 
 This chart displays multiple nodes(Movies) in a timeline order. Each movie node connect's to it's original movie in the past and the remakes in the future.
 
-Interactivity is the primary feture of the chart. Hovering, clicking and searching (work under progress) functionalities gives users a smooth experience to navigate through the data.
+Interactivity is the primary feature of the chart. Hovering, clicking and searching (work under progress) functionalities gives users a smooth experience to navigate through the data.
 <img src="docs/favicomatic/movie visualisation drawing.jpg" width="80%" />
 
 ## Insights into the work
@@ -19,9 +18,9 @@ Interactivity is the primary feture of the chart. Hovering, clicking and searchi
 * Second approach: In order to avoid the computation on the browser side, I used [nodejs]() and [jsdom]() to render the chart offline and store the html to a file
 * Isomorphic Javascript: And I wanted to keep both the static rendering and dynamic rendering pages. For this, I adopted commonJS approach which helped me to write isomorphic javascript which can be executed on nodejs as well as on browser
 * Bundling: To use the isomorphic javascript on browser, I used [Browserify](http://browserify.org/)
-* Work Force: To make the workflow faster and easier, I used [Gulp](http://gulpjs.com/) and [BrowserSync]()https://www.browsersync.io/
+* Work Force: To make the workflow faster and easier, I used [Gulp](http://gulpjs.com/) and [BrowserSync](https://www.browsersync.io/)
 
-Image
+
 
 ## Development
 ### Install gulp globally
