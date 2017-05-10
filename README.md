@@ -80,5 +80,5 @@ I am Sravan Kumar Rekandar, a UI developer (and a JavaScript full stack develope
 Miscellaneous things to look back after years and feel good about. [Mike Bostok's blog](https://bost.ocks.org/mike/), [Visual Studio code](https://code.visualstudio.com/), [ESLint](http://eslint.org/)
 
 ----
-[This article is also posted in Medium](https://medium.com/@sravanrekandar/offline-d3-sankey-chart-rendering-with-jsdom-c4c7cc01b709)
+[This article is also posted in Medium](https://medium.com/@sravan.ui/offline-d3-sankey-chart-rendering-with-jsdom-c4c7cc01b709)
 
