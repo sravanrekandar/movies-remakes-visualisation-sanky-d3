@@ -1,5 +1,5 @@
 # Movie Remakes Visualisation Sanky D3
-## [ViewDemo](https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3)
+## [ViewDemo](https://srekanui.github.io/movies-remakes-visualisation-sanky-d3/)
 
 ## Introduction
 This application is a proof of concept to visualise a big set of objects in a timeline order and their relations to other objects in the past.
@@ -30,7 +30,7 @@ $ npm install --global gulp
 
 ### Cloning the repo and installing dependencies
 ```
-$ git clone https://github.com/sravanrekandar/movies-remakes-visualisation-sanky-d3.git
+$ git clone https://github.com/srekanui/movies-remakes-visualisation-sanky-d3.git
 $ cd movies-remakes-visualisation-sanky-d3
 $ npm install
 ```
