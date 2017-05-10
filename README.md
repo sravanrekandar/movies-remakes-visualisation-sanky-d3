@@ -74,7 +74,7 @@ $ gulp build
 Then start a static file server on docs/ 
 
 # About me
-I am Sravan Kumar Rekandar, a UI developer (and a JavaScript full stack developer). I fancy beautiful, intuitive user interfaces and visualisations. Along with the love for beautiful UIs, I love to build some!
+I am Sravan Kumar, a UI developer (and a JavaScript full stack developer). I fancy beautiful, intuitive user interfaces and visualisations. Along with the love for beautiful UIs, I love to build some!
 
 # Miscellaneous
 Miscellaneous things to look back after years and feel good about. [Mike Bostok's blog](https://bost.ocks.org/mike/), [Visual Studio code](https://code.visualstudio.com/), [ESLint](http://eslint.org/)
